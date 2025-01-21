@@ -15,10 +15,16 @@ const Register = () => {
     try {
       setLoading(true);
       // Sending POST request to register the user
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/users/register`, values);
+      // console.log(values.email)
+      const response = await axios.post(`http://localhost:3001/api/v1/users/register`, {
+        email:values.email,
+        password:values.password,
+        name:values.name
+      });
       message.success("Registration Successful");
       setLoading(false);
       navigate("/login");  // Redirect to login after successful registration
+      console.log("posted")
     } catch (error) {
       setLoading(false);
       if (error.response) {
