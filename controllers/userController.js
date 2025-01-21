@@ -1,10 +1,10 @@
-const userModel = require("../models/userModel");
+const UserModel = require("../models/userModel");
 
 // login callback
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await userModel.findOne({ email, password });
+    const user = await UserModel.findOne({ email, password });
     if (!user) {
       return res.status(404).send("User Not Found");
     }
@@ -22,8 +22,14 @@ const loginController = async (req, res) => {
 
 //Register Callback
 const registerController = async (req, res) => {
+  console.log(req.body)
+  const {email,name,password}=req.body
   try {
-    const newUser = new userModel(req.body);
+    const newUser = new UserModel({
+      email,
+      password,
+      name
+    });
     await newUser.save();
     res.status(201).json({
       success: true,
