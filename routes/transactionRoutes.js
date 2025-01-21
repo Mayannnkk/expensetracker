@@ -19,6 +19,6 @@ router.post("/edit-transaction", editTransaction);
 router.post("/delete-transaction", deleteTransaction)
 
 //get transaction
-router.get("/get-transaction",getAllTransaction);
+router.post("/get-transaction",getAllTransaction);
 
 module.exports = router;
