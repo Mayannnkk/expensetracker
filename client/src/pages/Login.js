@@ -13,7 +13,10 @@ const Login = () => {
   const submitHandler = async (values) => {
     try {
       setLoading(true);
-      const { data } = await axios.post("/api/v1/users/login", values);
+      const { data } = await axios.post("http://localhost:3001/api/v1/users/login", {
+        email:values.email,
+        password:values.password,
+      });
       setLoading(false);
       message.success("Login successful");
       localStorage.setItem(
@@ -57,3 +60,4 @@ const Login = () => {
 };
 
 export default Login;
+
